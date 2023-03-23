@@ -1,15 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import Countries from './conponent/Countries/Countries';
 
 function App() {
   return (
     <div className="App">
+      <Countries></Countries>
       <LoadCountrys></LoadCountrys>
-      
     </div>
   );
 }
+
+
+
+
+
 
 
 function LoadCountrys(){
@@ -23,8 +29,22 @@ function LoadCountrys(){
 
   return (
 
-    <div>
-      <h1>availeable country;{countries.length}</h1>
+   <div>
+    <div  className='divStyle'> 
+   {countries.map(country => <Country name={country.name.common} population={country.population} flags={country.flags.png}></Country> )}
+   </div>
+   </div>
+  )
+}
+
+function Country(props) {
+  return(
+    <div className='styleBox'>
+
+    <h1>Name: {props.name}</h1>
+    <h4>population: {props.population}</h4>
+    <img src={props.flags} alt="" />
+    
     </div>
   )
 }
